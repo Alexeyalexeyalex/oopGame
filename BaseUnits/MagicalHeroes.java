@@ -1,4 +1,5 @@
-public class MagicalHeroes extends BaseUnit{
+package BaseUnits;
+public abstract class MagicalHeroes extends BaseUnit{
     private int mana;
 
     public MagicalHeroes(int hp, int atack, int defense, boolean status, String weapon, int attackRange, int mana) {

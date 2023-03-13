@@ -1,4 +1,7 @@
-public class BaseUnit {
+package BaseUnits;
+// import BaseUnits.UnitInterfase;
+
+public abstract class BaseUnit implements UnitInterfase{
 
     private int hp;
     private int atack;
@@ -31,6 +34,16 @@ public class BaseUnit {
         this.hp += heal;
     }
 
+    @Override
+    public String getInfo(){
+        return "BaseUnit";
+    }
 
+    @Override
+    public void step() {
+        
+    }
+
+    
    
 }

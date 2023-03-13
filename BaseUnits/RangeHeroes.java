@@ -1,4 +1,5 @@
-public class RangeHeroes extends BaseUnit {
+package BaseUnits;
+public abstract class RangeHeroes extends BaseUnit {
     
     private int arrows;
 

@@ -1,4 +1,5 @@
-
+package Range;
+import BaseUnits.MagicalHeroes;
 
 public class Monk extends MagicalHeroes{
 
@@ -6,4 +7,8 @@ public class Monk extends MagicalHeroes{
         super(100, 2, 1, true, "Книга заклинаний", 4, 50);
     }
     
+    @Override
+    public String getInfo() {
+        return "Monk";
+    }
 }
