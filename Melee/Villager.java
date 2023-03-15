@@ -4,7 +4,7 @@ import BaseUnits.MeleeHeroes;
 public class Villager extends MeleeHeroes{
 
     public Villager() {
-        super(100, 1, 0, true, "Кулак",1);
+        super(1,1,1,1,3,"Lee",0,1);
     }
     
     @Override

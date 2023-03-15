@@ -4,7 +4,7 @@ import BaseUnits.MagicalHeroes;
 public class Warlock extends MagicalHeroes{
 
     public Warlock() {
-        super(100, 5, 1, true, "Посох", 4, 50);
+        super(17,12,-5,30,9,"Bruse",1,0);
     }
 
     @Override

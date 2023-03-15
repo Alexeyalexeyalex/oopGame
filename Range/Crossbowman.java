@@ -6,7 +6,7 @@ public class Crossbowman extends RangeHeroes {
  
 
     public Crossbowman() {
-        super(100, 5, 3, true, "Арбалет", 4, 10);
+        super(6,3,6,10,4,"Kretch",0,0,16);
     }
 
     @Override

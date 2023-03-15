@@ -1,9 +1,9 @@
 package BaseUnits;
+
 public abstract class MeleeHeroes extends BaseUnit {
 
-    public MeleeHeroes(int hp, int atack, int defense, boolean status, String weapon, int attackRange) {
-        super(hp, atack, defense, status, weapon, attackRange);
+    public MeleeHeroes(int atack, int defense, int damage, int hp, int speed, String name, int magic,int deliver) {
+        super(atack, defense, damage, hp, speed, name, magic, deliver);
     }
-
 
 }

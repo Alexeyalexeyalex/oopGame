@@ -4,7 +4,7 @@ import BaseUnits.MeleeHeroes;
 public class Pikeman extends MeleeHeroes{
 
     public Pikeman() {
-        super(100, 4, 6, true, "Копье",2);
+        super(4,5,2,10,4,"Greg",0,0);
     }
 
     @Override

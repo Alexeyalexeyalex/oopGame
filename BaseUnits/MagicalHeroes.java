@@ -1,14 +1,12 @@
 package BaseUnits;
-public abstract class MagicalHeroes extends BaseUnit{
-    private int mana;
 
-    public MagicalHeroes(int hp, int atack, int defense, boolean status, String weapon, int attackRange, int mana) {
-        super(hp, atack, defense, status, weapon, attackRange);
-        this.mana = mana;
+public abstract class MagicalHeroes extends BaseUnit {
+
+
+    public MagicalHeroes(int atack, int defense, int damage, int hp, int speed, String name, int magic,int deliver) {
+        super(atack, defense, damage, hp, speed, name, magic, deliver);
     }
 
-    public void restoreMana(){
-        this.mana = 50;
-    }
-    
+
+
 }
