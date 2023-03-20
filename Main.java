@@ -18,30 +18,30 @@ public class Main {
         for (int i = 0; i < 10; i++) {
             switch (new Random().nextInt(4)) {
                 case 0:
-                    list.add(new Villager());
+                    list.add(new Villager(0,i));
                     break;
                 case 1:
-                    list.add(new Rogue());
+                    list.add(new Rogue(0,i));
                     break;
                 case 2:
-                    list.add(new Sniper());
+                    list.add(new Sniper(0,i));
                     break;
                 case 3:
-                    list.add(new Warlock());
+                    list.add(new Warlock(0,i));
                     break;
             }
             switch (new Random().nextInt(4)) {
                 case 0:
-                    list2.add(new Villager());
+                    list2.add(new Villager(9,i));
                     break;
                 case 1:
-                    list2.add(new Pikeman());
+                    list2.add(new Pikeman(9,i));
                     break;
                 case 2:
-                    list2.add(new Crossbowman());
+                    list2.add(new Crossbowman(9,i));
                     break;
                 case 3:
-                    list2.add(new Monk());
+                    list2.add(new Monk(9,i));
                     break;
             }
         }
@@ -49,10 +49,9 @@ public class Main {
         ArrayList<BaseUnit> allUnits = new ArrayList<>();
         allUnits.addAll(list);
         allUnits.addAll(list2);
-        // for (BaseUnit baseUnit : allUnits) {
-        //     System.out.println(baseUnit.getInfo());
-        // }
+
         allUnits.sort(new Comparator<BaseUnit>() {
+            
             @Override
             public int compare(BaseUnit u1, BaseUnit u2) {
                 if (u1.getSpeed() == u2.getSpeed())

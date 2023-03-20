@@ -14,10 +14,11 @@ public abstract class BaseUnit implements UnitInterfase {
     protected String name;
     protected int deliver;
     protected int magic;
+    protected Location location;
 
     protected Random rnd = new Random();
 
-    public BaseUnit(int atack, int defense, int damage, int hp, int speed, String name, int deliver, int magic) {
+    public BaseUnit(int atack, int defense, int damage, int hp, int speed, String name, int deliver, int magic, int x, int y) {
         this.attack = atack;
         this.defense = defense;
         this.damage = damage;
@@ -26,6 +27,7 @@ public abstract class BaseUnit implements UnitInterfase {
         this.name = name;
         this.deliver = deliver;
         this.magic = magic;
+        location = new Location(x, y);
     }
 
     public void GetDamage(int damage) {
