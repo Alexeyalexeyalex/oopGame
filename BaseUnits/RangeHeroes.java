@@ -6,8 +6,8 @@ public abstract class RangeHeroes extends BaseUnit {
 
     private int arrows;
 
-    public RangeHeroes(int atack, int defense, int damage, int hp, int speed, String name, int magic,int deliver,int arrows, int x, int y) {
-        super(atack, defense, damage, hp, speed, name, magic, deliver,x,y);
+    public RangeHeroes(String type,int atack, int defense, int minDamage,int maxDamage, int hp,int maxHp, int speed, String name, int magic,int deliver,int arrows, int x, int y) {
+        super(type,atack, defense, minDamage,maxDamage, hp,maxHp, speed, name, magic, deliver,x,y);
         this.arrows = arrows;
     }
 
@@ -21,20 +21,20 @@ public abstract class RangeHeroes extends BaseUnit {
             System.out.println("Могу стрелять!");
             int maxDistance = 20;
             for (BaseUnit unit : team) {
-                if (unit.hp > 0 && unit.location.getDistance(unit)>maxDistance) {
-                    maxDistance = (int)unit.location.getDistance(unit);
-                    // this.attack(unit, this.damage);
-                    // this.arrows--;
-                    // break;
-                }
-            }
-            for (BaseUnit unit : team) {
-                if (unit.location.getDistance(unit) == maxDistance){
-                    this.attack(unit, this.damage);
+                if (unit.hp > 0 ) {//&& unit.location.getDistance(unit)>maxDistance
+                    // maxDistance = (int)unit.location.getDistance(unit);
+                    this.attack(unit);
                     this.arrows--;
                     break;
                 }
             }
+            // for (BaseUnit unit : team) {
+            //     if (unit.location.getDistance(unit) == maxDistance){
+            //         this.attack(unit);
+            //         this.arrows--;
+            //         break;
+            //     }
+            // }
             System.out.println("Осталось стрел:" + String.valueOf(this.arrows));
 
             for (BaseUnit unit : friends) {

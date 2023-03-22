@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Random;
+import java.util.Scanner;
+
 import BaseUnits.BaseUnit;
 import Melee.Pikeman;
 import Melee.Rogue;
@@ -11,47 +13,58 @@ import Range.Sniper;
 import Range.Warlock;
 
 public class Main {
-    public static void main(String[] args) {
-        ArrayList<BaseUnit> list = new ArrayList<>();
-        ArrayList<BaseUnit> list2 = new ArrayList<>();
+    public static final int GANG_SIZE = 10;
+    public static ArrayList<BaseUnit> whiteSide;
+    public static ArrayList<BaseUnit> darkSide;
+    public static ArrayList<BaseUnit> allUnits;
+
+    private static void init() {
+
+        whiteSide = new ArrayList<>();
+        darkSide = new ArrayList<>();
 
         for (int i = 0; i < 10; i++) {
             switch (new Random().nextInt(4)) {
                 case 0:
-                    list.add(new Villager(0,i));
+                    whiteSide.add(new Villager(1, i+1));
                     break;
                 case 1:
-                    list.add(new Rogue(0,i));
+                    whiteSide.add(new Rogue(1, i+1));
                     break;
                 case 2:
-                    list.add(new Sniper(0,i));
+                    whiteSide.add(new Sniper(1, i+1));
                     break;
                 case 3:
-                    list.add(new Warlock(0,i));
+                    whiteSide.add(new Warlock(1, i+1));
                     break;
             }
             switch (new Random().nextInt(4)) {
                 case 0:
-                    list2.add(new Villager(9,i));
+                    darkSide.add(new Villager(10, i+1));
                     break;
                 case 1:
-                    list2.add(new Pikeman(9,i));
+                    darkSide.add(new Pikeman(10, i+1));
                     break;
                 case 2:
-                    list2.add(new Crossbowman(9,i));
+                    darkSide.add(new Crossbowman(10, i+1));
                     break;
                 case 3:
-                    list2.add(new Monk(9,i));
+                    darkSide.add(new Monk(10, i+1));
                     break;
             }
         }
-    
-        ArrayList<BaseUnit> allUnits = new ArrayList<>();
-        allUnits.addAll(list);
-        allUnits.addAll(list2);
 
+        allUnits = new ArrayList<>();
+        allUnits.addAll(whiteSide);
+        allUnits.addAll(darkSide);
+
+        
+
+    }
+
+    private static void makeStep() {
         allUnits.sort(new Comparator<BaseUnit>() {
-            
+
             @Override
             public int compare(BaseUnit u1, BaseUnit u2) {
                 if (u1.getSpeed() == u2.getSpeed())
@@ -62,13 +75,22 @@ public class Main {
                     return -1;
             }
         });
-
-        System.out.println(allUnits);
-
         // list.forEach(u -> u.step(list2, list));
         for (BaseUnit baseUnit : allUnits) {
-            baseUnit.step(list2, list);
+            baseUnit.step(darkSide, whiteSide);
+            baseUnit.step(whiteSide, darkSide);
+        }
+    }
+
+    public static void main(String[] args) {
+        init();
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            ConsoleView.view();
+            makeStep();
+            scanner.nextLine();
         }
         
+
     }
 }

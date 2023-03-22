@@ -11,23 +11,19 @@ public class Location {
         this.y=y;
     }
 
+    public boolean isEquals(Location opposit){
+        if (opposit.y == y && opposit.x==x) return true;
+        return false;
+    }
     
-    public double getDistance(BaseUnit unit){
+    
+    public float getDistance(BaseUnit unit){
       
-        return Math.sqrt(Math.pow(x - unit.location.x, 2) + Math.pow(y - unit.location.y, 2));
+        return (float)Math.sqrt(Math.pow(x - unit.location.x, 2) + Math.pow(y - unit.location.y, 2));
         
     }
     
-    // public void setPosition(ArrayList<BaseUnit> leftTeam, ArrayList<BaseUnit> rightTeam, int position){
-    //     if (leftTeam.contains(this)) {
-    //         this.x = 0;
-    //         this.y = position;
-    //     }
-    //     else{
-    //         this.x = position;
-    //         this.y = 0;
-    //     }
-    // }
+
 
     
     
