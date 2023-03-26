@@ -26,6 +26,7 @@ public abstract class BaseUnit implements UnitInterfase {
         this.attack = atack;
         this.defense = defense;
         this.minDamage = minDamage;
+        this.maxDamage = maxDamage;
         this.hp = hp;
         this.maxHp = maxHp;
         this.speed = speed;
@@ -36,20 +37,22 @@ public abstract class BaseUnit implements UnitInterfase {
     }
 
 
-    public void attack(BaseUnit target) {
-        int causedDamage = minDamage;
-        if (this.minDamage<this.maxDamage){causedDamage = rnd.nextInt(this.minDamage, this.maxDamage);}
-        System.out.printf("%s атакует %s\t", this.name, target.name);
-        System.out.printf("Наносит %d урона\n", causedDamage);
-        target.getDamage(target, causedDamage);
-        System.out.printf("%s hp= %d\n", target.getClass().getSimpleName(), target.hp);
+    public void attack(BaseUnit target, int damage,int minDamage, int maxDamage) {
+        int causedDamage;
+        if (damage < target.defense+1) causedDamage = 1;
+        else {
+            if (minDamage == maxDamage)  causedDamage = maxDamage;
+            else  causedDamage = (new Random().nextInt(maxDamage - minDamage) + minDamage);
+        }
+        target.getDamage(causedDamage);
+        System.out.println(causedDamage);
     }
 
-    public void getDamage(BaseUnit target,int damage) {
-        if (target.hp - damage > 0) {
-            target.hp -= damage;
+    public void getDamage(int damage) {
+        if (this.hp - damage > 0) {
+            this.hp -= damage;
         } else
-            target.hp = 0;
+            this.hp = 0;
     }
 
     public int getSpeed() {

@@ -24,7 +24,7 @@ public class Main {
         darkSide = new ArrayList<>();
 
         for (int i = 0; i < 10; i++) {
-            switch (new Random().nextInt(4)) {
+            switch (new Random().nextInt(3)) {
                 case 0:
                     whiteSide.add(new Villager(1, i+1));
                     break;
@@ -34,11 +34,11 @@ public class Main {
                 case 2:
                     whiteSide.add(new Sniper(1, i+1));
                     break;
-                case 3:
-                    whiteSide.add(new Warlock(1, i+1));
-                    break;
+                // case 3:
+                //     whiteSide.add(new Warlock(1, i+1));
+                //     break;
             }
-            switch (new Random().nextInt(4)) {
+            switch (new Random().nextInt(3)) {
                 case 0:
                     darkSide.add(new Villager(10, i+1));
                     break;
@@ -48,9 +48,9 @@ public class Main {
                 case 2:
                     darkSide.add(new Crossbowman(10, i+1));
                     break;
-                case 3:
-                    darkSide.add(new Monk(10, i+1));
-                    break;
+                // case 3:
+                //     darkSide.add(new Monk(10, i+1));
+                //     break;
             }
         }
 
@@ -75,10 +75,12 @@ public class Main {
                     return -1;
             }
         });
-        // list.forEach(u -> u.step(list2, list));
-        for (BaseUnit baseUnit : allUnits) {
-            baseUnit.step(darkSide, whiteSide);
-            baseUnit.step(whiteSide, darkSide);
+
+        for (BaseUnit unit : allUnits) {
+            if (darkSide.contains(unit)) {
+                unit.step(whiteSide, darkSide);
+            } else
+                unit.step(darkSide, whiteSide);
         }
     }
 

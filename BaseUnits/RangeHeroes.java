@@ -2,6 +2,8 @@ package BaseUnits;
 
 import java.util.ArrayList;
 
+import Melee.Villager;
+
 public abstract class RangeHeroes extends BaseUnit {
 
     private int arrows;
@@ -18,36 +20,41 @@ public abstract class RangeHeroes extends BaseUnit {
     @Override
     public void step(ArrayList<BaseUnit> team, ArrayList<BaseUnit> friends) {
         if (this.arrows > 0 && this.hp > 0) {
-            System.out.println("Могу стрелять!");
-            int maxDistance = 20;
-            for (BaseUnit unit : team) {
-                if (unit.hp > 0 ) {//&& unit.location.getDistance(unit)>maxDistance
-                    // maxDistance = (int)unit.location.getDistance(unit);
-                    this.attack(unit);
-                    this.arrows--;
-                    break;
-                }
-            }
-            // for (BaseUnit unit : team) {
-            //     if (unit.location.getDistance(unit) == maxDistance){
-            //         this.attack(unit);
-            //         this.arrows--;
-            //         break;
-            //     }
-            // }
-            System.out.println("Осталось стрел:" + String.valueOf(this.arrows));
 
-            for (BaseUnit unit : friends) {
-                if (unit.getInfo().equals("Villager")) {
-                    System.out.println("Крестьянин приносит стрелу!");
-                    this.arrows++;
-                    break;
+            BaseUnit target = null;
+            double minDistance = Double.MAX_VALUE;
+
+            for (BaseUnit unit : team) {
+                if(this.location.getDistance(unit)<minDistance && unit.hp>0){
+                    minDistance = this.location.getDistance(unit);
+                    target = unit;
                 }
             }
-            System.out.println("Осталось стрел:" + String.valueOf(this.arrows));
+            if (target == null) {
+                System.out.printf("%s Говорит что бой окончен\n", this.getClass().getSimpleName());
+            }
+            else{
+                System.out.printf("%s Атаковал %s на ", this.getClass().getSimpleName(), target.getClass().getSimpleName());
+                this.attack(target, this.attack, this.minDamage, this.maxDamage);
+                this.arrows--;
+
+
+                for (BaseUnit unit : friends) {
+                    if (unit.getInfo().equals("Villager") && unit.hp>0) {
+                        this.arrows++;
+                        break;
+                    }
+                }
+            }
 
         }
         
 
     }
+
+    @Override
+    public String toString() {
+        return "Осталось стрел: " + String.valueOf(this.arrows);
+    }
+
 }
