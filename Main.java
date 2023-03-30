@@ -20,9 +20,10 @@ public class Main {
 
     private static void init() {
 
-        whiteSide = new ArrayList<>();
-        darkSide = new ArrayList<>();
+        whiteSide = new ArrayList<>(); // левая комманда
+        darkSide = new ArrayList<>(); // правая комманда
 
+        // заполнение команд определенными юнитами
         for (int i = 0; i < 10; i++) {
             switch (new Random().nextInt(4)) {
                 case 0:
@@ -53,7 +54,7 @@ public class Main {
                     break;
             }
         }
-
+        // создание общего списка юнитов
         allUnits = new ArrayList<>();
         allUnits.addAll(whiteSide);
         allUnits.addAll(darkSide);
@@ -61,8 +62,9 @@ public class Main {
         
 
     }
-
+    // ход юнитов
     private static void makeStep() {
+        // сортировка юнитов по скорости
         allUnits.sort(new Comparator<BaseUnit>() {
 
             @Override
