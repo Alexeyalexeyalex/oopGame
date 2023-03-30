@@ -1,8 +1,7 @@
+// основной класс героев дальнего боя
 package BaseUnits;
 
 import java.util.ArrayList;
-
-import Melee.Villager;
 
 public abstract class RangeHeroes extends BaseUnit {
 
@@ -13,10 +12,7 @@ public abstract class RangeHeroes extends BaseUnit {
         this.arrows = arrows;
     }
 
-    public void TakeArrows(int arrows) {
-        this.arrows += arrows;
-    }
-
+    // ход юнита
     @Override
     public void step(ArrayList<BaseUnit> team, ArrayList<BaseUnit> friends) {
         if (this.arrows > 0 && this.hp > 0) {
@@ -24,6 +20,7 @@ public abstract class RangeHeroes extends BaseUnit {
             BaseUnit target = null;
             double minDistance = Double.MAX_VALUE;
 
+            // выбор цели
             for (BaseUnit unit : team) {
                 if(this.location.getDistance(unit)<minDistance && unit.hp>0){
                     minDistance = this.location.getDistance(unit);
@@ -33,12 +30,13 @@ public abstract class RangeHeroes extends BaseUnit {
             if (target == null) {
                 System.out.printf("%s Говорит что бой окончен\n", this.getClass().getSimpleName());
             }
+            // нанесение урона
             else{
                 System.out.printf("%s Атаковал %s на ", this.getClass().getSimpleName(), target.getClass().getSimpleName());
                 this.attack(target, this.attack, this.minDamage, this.maxDamage);
                 this.arrows--;
 
-
+                // поиск определенного юнита для восполнения стрел
                 for (BaseUnit unit : friends) {
                     if (unit.getInfo().equals("Villager") && unit.hp>0) {
                         this.arrows++;

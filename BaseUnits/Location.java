@@ -1,3 +1,4 @@
+// класс хранящий в себе информацию о расположении юнита
 package BaseUnits;
 
 import java.util.ArrayList;
@@ -31,39 +32,31 @@ public class Location {
         if ((dx > dy)) {
             if (this.x < location.x && !temp[0] && this.x + 1 != 11) {
                 this.x += 1;
-                // System.out.printf("1 %s\n", this.getClass().getSimpleName());
                 return;
             } else if (this.x > location.x && !temp[1] && this.x - 1 != 0) {
                 this.x -= 1;
-                // System.out.printf("2 %s\n", this.getClass().getSimpleName());
                 return;
             }
             if (this.y <= location.y && !temp[2]&& this.y + 1 != 11) {
                 this.y += 1;
-                // System.out.printf("3 %s\n", this.getClass().getSimpleName());
                 return;
             } else if (this.y >= location.y && !temp[3]&& this.y - 1 != 0) {
                 this.y -= 1;
-                // System.out.printf("4 %n", this.getClass().getSimpleName());
                 return;
             }
         } else {
             if (this.y < location.y && !temp[2] && this.y + 1 != 11) {
                 this.y += 1;
-                // System.out.printf("1.1 %s\n", this.getClass().getSimpleName());
                 return;
             } else if (this.y > location.y && !temp[3] && this.x - 1 != 0) {
                 this.y -= 1;
-                // System.out.printf("1.2 %s\n", this.getClass().getSimpleName());
                 return;
             }
             if (this.x <= location.x && !temp[0]&& this.x + 1 != 11) {
                 this.x += 1;
-                // System.out.printf("1.3 %s\n", this.getClass().getSimpleName());
                 return;
             } else if (this.x >= location.x && !temp[1]&& this.x - 1 != 0) {
                 this.x -= 1;
-                // System.out.printf("1.4 %s\n", this.getClass().getSimpleName());
                 return;
             }
         }
